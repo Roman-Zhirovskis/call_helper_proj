@@ -1,0 +1,12 @@
+Django
+djangorestframework
+django-filter
+python-dotenv
+
+#linters
+
+black
+flake8
+mypy
+isort
+autoflake
