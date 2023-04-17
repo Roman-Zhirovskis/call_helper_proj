@@ -1,21 +1,22 @@
 import os
-from pathlib import Path
 
-from dotenv import load_dotenv
+import environ
 
-load_dotenv()
+#################### ENV SETTINGS #################################################
+env = environ.Env(DEBUG=(bool, False))
 
+root = environ.Path(__file__) - 2
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env(os.path.join(root(), '.env'))
+###################################################################################
 
+BASE_DIR = root()
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY')
 
+DEBUG = env.bool('DEBUG', default=False)
 
-DEBUG = os.getenv('DEBUG', default=False)
-
-
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = env.str("ALLOWED_HOSTS").split(",")
 
 # Application definition
 
@@ -72,16 +73,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('PG_NAME'),
-        'USER': os.getenv('PG_USER'),
-        'PASSWORD': os.getenv('PG_PASSWORD'),
-        'HOST': os.getenv('PG_HOST'),
+        'NAME': env.str('PG_NAME'),
+        'USER': env.str('PG_USER'),
+        'PASSWORD': env.str('PG_PASSWORD'),
+        'HOST': env.str('PG_HOST'),
         'PORT': '',
     },
-    'extra': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
+    'extra': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'db.sqlite3')},
 }
 
 
