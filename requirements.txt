@@ -1,13 +1,13 @@
-Django
-djangorestframework
-django-filter
-django-environ
+Django==4.2
+djangorestframework==3.14.0
+django-filter==23.1
+django-environ==0.10.0
 psycopg2-binary==2.9.6
 django-cors-headers==3.14.0
-#linters
 
-black
-flake8
-mypy
-isort
-autoflake
+#linters
+black==23.3.0
+flake8==6.0.0
+mypy==1.2.0
+isort==5.12.0
+autoflake==2.0.2
