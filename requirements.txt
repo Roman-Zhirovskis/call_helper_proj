@@ -2,8 +2,8 @@ Django
 djangorestframework
 django-filter
 django-environ
-psycopg2-binary
-
+psycopg2-binary==2.9.6
+django-cors-headers==3.14.0
 #linters
 
 black

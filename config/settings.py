@@ -2,13 +2,15 @@ import os
 
 import environ
 
-#################### ENV SETTINGS #################################################
+############################################
+#               ENV SETTINGS
+############################################
 env = environ.Env(DEBUG=(bool, False))
 
 root = environ.Path(__file__) - 2
 
 environ.Env.read_env(os.path.join(root(), '.env'))
-###################################################################################
+
 
 BASE_DIR = root()
 
@@ -32,6 +34,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "django_filters",
+    "corsheaders",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS
@@ -45,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -119,3 +123,11 @@ STATIC_URL = 'static/'
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+############################################
+#               CORS HEADERS
+############################################
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = ['*']
+CSRF_COOKIE_SECURE = False
