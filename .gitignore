@@ -142,3 +142,5 @@ mediafiles
 client/node_modules
 run_tests
 pre-hook.txt
+*/migrations/
+migrations
