@@ -135,6 +135,8 @@ pyproject.toml
 setup.cfg
 
 #additional exclusions
+static
+media
 staticfiles
 mediafiles
 client/node_modules
